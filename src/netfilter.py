@@ -4,10 +4,10 @@ import struct
 import sys
 import debug
 import logging
-try:
-    from   pynetfilter_conntrack import Conntrack
-except:
-    pass
+#try:
+#    from   pynetfilter_conntrack import Conntrack
+#except:
+#    pass
 
 class NetfilterTool():
     def __init__(self):
@@ -42,36 +42,36 @@ class NetfilterTool():
         
         return address, port
     
-    def getrealdest_ct(self, newip, newport):
-        if self.config.debug > 1:
-            self.log.debug("Netfilter: BEGIN")
-        try:
-            # Create conntrack object; get conntrack table
-            nf = Conntrack()
-            table = nf.dump_table(socket.AF_INET)
-        except:
-            if self.config.debug > 0:
-                self.log.error(sys.exc_info())                
-            return -1,-1
-        if self.config.debug > 1:
-            self.log.debug("Netfilter: local socket %s:%s" % \
-                (newip, newport))
-            
-        # Search conntrack table for target destination IP:port
-        for entry in table:
-            repl_ipv4_dst_ip = self.ltoip(entry.repl_ipv4_dst)
-            orig_ipv4_dst_ip = self.ltoip(entry.orig_ipv4_dst)
-            
-            if self.config.debug > 1:
-                self.log.debug("Netfilter: Trying: %s:%s" % (repl_ipv4_dst_ip, entry.repl_port_dst))
-                
-            if repl_ipv4_dst_ip == newip and entry.repl_port_dst == newport:
-                if self.config.debug > 1:
-                    self.log.debug("Netfilter: remote socket %s:%s" % \
-                        (orig_ipv4_dst_ip, entry.orig_port_dst))
-                return orig_ipv4_dst_ip, entry.orig_port_dst
-        if self.config.debug > 0:
-            self.log.debug("Netfilter: no socket match")            
-            self.log.debug("Netfilter: END")
-        
-        return -1, -1            
+#    def getrealdest_ct(self, newip, newport):
+#        if self.config.debug > 1:
+#            self.log.debug("Netfilter: BEGIN")
+#        try:
+#            # Create conntrack object; get conntrack table
+#            nf = Conntrack()
+#            table = nf.dump_table(socket.AF_INET)
+#        except:
+#            if self.config.debug > 0:
+#                self.log.error(sys.exc_info())                
+#            return -1,-1
+#        if self.config.debug > 1:
+#            self.log.debug("Netfilter: local socket %s:%s" % \
+#                (newip, newport))
+#           
+#        # Search conntrack table for target destination IP:port
+#        for entry in table:
+#            repl_ipv4_dst_ip = self.ltoip(entry.repl_ipv4_dst)
+#            orig_ipv4_dst_ip = self.ltoip(entry.orig_ipv4_dst)
+#            
+#            if self.config.debug > 1:
+#                self.log.debug("Netfilter: Trying: %s:%s" % (repl_ipv4_dst_ip, entry.repl_port_dst))
+#                
+#            if repl_ipv4_dst_ip == newip and entry.repl_port_dst == newport:
+#                if self.config.debug > 1:
+#                    self.log.debug("Netfilter: remote socket %s:%s" % \
+#                        (orig_ipv4_dst_ip, entry.orig_port_dst))
+#                return orig_ipv4_dst_ip, entry.orig_port_dst
+#        if self.config.debug > 0:
+#            self.log.debug("Netfilter: no socket match")            
+#            self.log.debug("Netfilter: END")
+#        
+#        return -1, -1            
