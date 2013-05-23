@@ -75,7 +75,7 @@ function phase1 {
   fi
 
   echo ${mallorydir} > ${UPDATE_DIR}/installdir
-  echo "retrieving current mallory source from bitbucket"
+  echo "retrieving current mallory source from github"
   git clone https://github.com/CarveSystems/Mallory.git ${mallorydir}/current
 
   echo "phase2" > ${UPDATE_DIR}/.next_phase
