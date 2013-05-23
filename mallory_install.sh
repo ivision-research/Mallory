@@ -4,7 +4,7 @@
 # to the latest package revs, and installs the packages required
 # to run the current (1.0) version of the Mallory tool. 
 # ----------------------------------------------------------------
-# Copyright 2011 - Intrepidus Group
+# Copyright 2013 - Carve Systems
 # ----------------------------------------------------------------
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,13 +58,13 @@ function phase1 {
   sudo apt-get upgrade -y |tee -a ${UPDATE_LOG}
 
   echo "installing Mallory dependencies"
-  sudo apt-get -y install build-essential mercurial libnetfilter-conntrack-dev libnetfilter-conntrack3 |tee -a ${UPDATE_LOG}
-  if [ ! -f /usr/lib/netfilter_conntrack.so.1 ]; then
-    sudo ln -s /usr/lib/libnetfilter_conntrack.so /usr/lib/libnetfilter_conntrack.so.1
-  fi
+  sudo apt-get -y install build-essential git libnetfilter-conntrack-dev libnetfilter-conntrack3 |tee -a ${UPDATE_LOG}
+  #if [ ! -f /usr/lib/netfilter_conntrack.so.1 ]; then
+  #  sudo ln -s /usr/lib/libnetfilter_conntrack.so /usr/lib/libnetfilter_conntrack.so.1
+  #fi
   sudo apt-get -y install python-pip python-m2crypto python-qt4 pyro-gui python-netfilter python-pyasn1 |tee -a ${UPDATE_LOG}
   sudo apt-get -y install python-paramiko python-twisted-web python-qt4-sql libqt4-sql-sqlite sqlite3 |tee -a ${UPDATE_LOG}
-  sudo easy_install pynetfilter_conntrack
+  #sudo easy_install pynetfilter_conntrack
   echo ""
 
   echo "enter directory you'd like Mallory to be installed to"
@@ -76,7 +76,7 @@ function phase1 {
 
   echo ${mallorydir} > ${UPDATE_DIR}/installdir
   echo "retrieving current mallory source from bitbucket"
-  /usr/bin/hg clone http://bitbucket.org/IntrepidusGroup/mallory ${mallorydir}/current
+  git clone https://github.com/CarveSystems/Mallory.git ${mallorydir}/current
 
   echo "phase2" > ${UPDATE_DIR}/.next_phase
   phase2
@@ -139,7 +139,7 @@ function update {
   rm -rf ${mallorydir}/current
 
   echo "retrieving current mallory source from bitbucket"
-  /usr/bin/hg clone http://bitbucket.org/IntrepidusGroup/mallory ${mallorydir}/current
+  git clone https://github.com/CarveSystems/Mallory.git ${mallorydir}/current
 
   echo "update" > ${UPDATE_DIR}/.next_phase
   exit 0
