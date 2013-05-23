@@ -4,6 +4,17 @@ Mallory is an extensible TCP/UDP man in the middle proxy that is designed
 to be run as a gateway. Unlike other tools of its kind, Mallory supports 
 modifying non-standard protocols on the fly.
 
+
+INSTALLATION
+============
+1. Download the mallory_install.sh script
+wget https://raw.github.com/CarveSystems/Mallory/master/mallory_install.sh
+
+2. Run the mallory_install.sh script
+bash mallory_install.sh
+
+3. Have fun
+
 CONFIGURATION
 ============
 The goal is to man in the middle traffic for testing purposes. The ideal 
