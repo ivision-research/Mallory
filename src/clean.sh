@@ -1,6 +1,6 @@
 #!/bin/sh
 rm -f ./ca/ca.cer
-#rm -f ./ca/ca.
+rm -f ./ca/ca.key
 rm -f ../db/*
 rm -f ../certs/*
 rm -f certs/*
