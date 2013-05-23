@@ -63,7 +63,7 @@ function phase1 {
   #  sudo ln -s /usr/lib/libnetfilter_conntrack.so /usr/lib/libnetfilter_conntrack.so.1
   #fi
   sudo apt-get -y install python-pip python-m2crypto python-qt4 pyro-gui python-netfilter python-pyasn1 |tee -a ${UPDATE_LOG}
-  sudo apt-get -y install python-paramiko python-twisted-web python-qt4-sql libqt4-sql-sqlite sqlite3 |tee -a ${UPDATE_LOG}
+  sudo apt-get -y install python-paramiko python-imaging python-twisted-web python-qt4-sql libqt4-sql-sqlite sqlite3 |tee -a ${UPDATE_LOG}
   #sudo easy_install pynetfilter_conntrack
   echo ""
 
