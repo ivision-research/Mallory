@@ -65,8 +65,8 @@ class SSHProtocol(TcpProtocol):
                  
         self.log.info("SSHProtocol: ccs: configuring client socket")
         
-        host_key = paramiko.RSAKey(filename='test_rsa.key')
-                                
+        #host_key = paramiko.RSAKey(filename='test_rsa.key')
+        host_key = paramiko.RSAKey(filename='ssh_rsa_key.key')                        
         self.sourcet = paramiko.Transport(self.source)
         try:
             self.sourcet.load_server_moduli()
